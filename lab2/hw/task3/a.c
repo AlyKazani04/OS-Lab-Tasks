@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *file;
+    char *filename = "seq.txt";
+    int list[100];
+
+    file = fopen(filename, "r");
+    if(file == NULL)
+    {
+        printf("Error opening file!\n");
+        return -1;
+    }
+
+    int index = fscanf(file, "%d", & list[0]);
+    
+    for(int i = 1; i < 100; i++)
+    {
+        if(fscanf(file, "%d", &list[i]) == 1)
+        {
+            if(list[i] == index + 1)
+            {
+                index++;
+                continue;
+            }
+            else
+            {
+                printf("MIssing: %d\n", index + 1);
+                index++;
+                i--;
+            }
+        }
+        else
+        {
+            break;
+        }
+    }
+    
+    return 0;
+}
