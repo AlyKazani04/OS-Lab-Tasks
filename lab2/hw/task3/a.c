@@ -19,17 +19,13 @@ int main() {
     {
         if(fscanf(file, "%d", &list[i]) == 1)
         {
-            if(list[i] == index + 1)
+            while(list[i] != index + 1)
             {
+                printf("Missing: %d\n", index + 1);
                 index++;
-                continue;
             }
-            else
-            {
-                printf("MIssing: %d\n", index + 1);
-                index++;
-                i--;
-            }
+            index++;
+            continue;
         }
         else
         {
