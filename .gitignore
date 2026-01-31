@@ -1,3 +1,12 @@
+# ignore all
 *
+# except dirs and files with extensions
 !*/
 !*.*
+
+# dont ignore makefiles (also no extension)
+!makefile
+
+# ignore build stuff
+build/
+*.o
