@@ -1,4 +1,3 @@
-src = *.cpp
 o_files = build/main.o build/student.o build/teacher.o build/course.o
 output = task1_exec
 
