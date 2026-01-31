@@ -22,8 +22,7 @@ build/%.o: %.cpp
 run: $(output)
 	./$(output)
 
-clean: 
-	rm -f *.o
+clean:
 	rm -rf build
 
 full_clean: clean
