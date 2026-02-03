@@ -19,5 +19,7 @@ int main(int argc, char** argv)
     strcat(command, filename);
     system(command);
 
+    fclose(f);
+
     return 0;
 }

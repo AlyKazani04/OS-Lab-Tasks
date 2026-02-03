@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int main() {
+    
     FILE *file;
     char *filename = "seq.txt";
     int list[100];
@@ -33,5 +34,7 @@ int main() {
         }
     }
     
+    fclose(file);
+
     return 0;
 }

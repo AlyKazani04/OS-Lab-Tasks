@@ -19,7 +19,7 @@ int main(int argc, char** argv)
         }
         else
         {
-            printf("MIssing: %d\n", index + 1);
+            printf("Missing: %d\n", index + 1);
             index++;
             i--;
         }
