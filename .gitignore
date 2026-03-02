@@ -10,3 +10,6 @@
 # ignore build stuff
 build/
 *.o
+
+# ignore txts
+*.txt
