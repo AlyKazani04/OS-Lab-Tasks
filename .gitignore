@@ -6,6 +6,7 @@
 
 # dont ignore makefiles (also no extension)
 !makefile
+!Makefile
 
 # ignore build stuff
 build/
