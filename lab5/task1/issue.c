@@ -12,7 +12,7 @@ void issueBook() {
         printf("Book Already Issued!\n");
       } else {
         library[i].isIssued = 1;
-        printf("Book Issued to %d!\n", i);
+        printf("Book Issued to Student %d!\n", i + 1);
       }
 
       return;
