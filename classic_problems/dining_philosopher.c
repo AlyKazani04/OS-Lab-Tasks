@@ -10,23 +10,34 @@
 #include <semaphore.h>
 #include <stdio.h>
 
-sem_t chopsticks[3]; // One semaphore per chopstick
+#define MAX_PHIL 5
 
-void *philosopher(void *num) {
+sem_t chopsticks[MAX_PHIL];
+
+void *philosopher(void *num) { // Passing the Thread ID as the parameter
   int id = *(int *)num;
+  int left = id;
+  int right = (id + 1) % MAX_PHIL;
 
-  // To prevent deadlock, the 5th philosopher picks up Right then Left
-  if (id == 4) {
-    sem_wait(&chopsticks[(id + 1) % 5]);
-    sem_wait(&chopsticks[id]);
+  // If it's the last philosopher, swap the pick-up order.
+  if (id == MAX_PHIL - 1) {
+    sem_wait(&chopsticks[right]); // Pick up Right first
+    sem_wait(&chopsticks[left]);  // Pick up Left second
   } else {
-    sem_wait(&chopsticks[id]);           // Pick up Left
-    sem_wait(&chopsticks[(id + 1) % 5]); // Pick up Right
+    sem_wait(&chopsticks[left]);  // Pick up Left first
+    sem_wait(&chopsticks[right]); // Pick up Right second
   }
 
-  // ... Eating ...
+  printf("Philosopher %d is eating.\n", id);
 
-  sem_post(&chopsticks[id]);
-  sem_post(&chopsticks[(id + 1) % 5]);
+  // Release the chopsticks (ideally in reverse order of acquisition)
+  if (id == MAX_PHIL - 1) {
+    sem_post(&chopsticks[left]);
+    sem_post(&chopsticks[right]);
+  } else {
+    sem_post(&chopsticks[right]);
+    sem_post(&chopsticks[left]);
+  }
+
   return NULL;
 }
